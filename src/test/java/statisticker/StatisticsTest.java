@@ -1,13 +1,15 @@
 package statisticker;
 
-import static org.junit.Assert.*;
-import jdk.nashorn.internal.AssertsEnabled;
+import org.junit.Assert;
+import org.junit.Test;
+import java.lang.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.ArrayList;
+//import jdk.nashorn.internal.AssertsEnabled;
 
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
 public class StatisticsTest 
 {
@@ -15,7 +17,7 @@ public class StatisticsTest
     public void reportsAverageMinMaxx()
     {
         Float[] numbers = {1.5f, 8.9f, 3.2f, 4.5f};
-        List<float> numberList = Arrays.asList(numbers);
+        List<Float> numberList = Arrays.asList(numbers);
 
         Statistics.Stats s = Statistics.getStatistics(numberList);
 
@@ -27,7 +29,7 @@ public class StatisticsTest
     @Test
     public void reportsNaNForEmptyInput()
     {
-        List<float> emptyList = new ArrayList<float>();
+        List<Float> emptyList = new ArrayList<>();
 
         Statistics.Stats s = Statistics.getStatistics(emptyList);
 
@@ -46,7 +48,7 @@ public class StatisticsTest
         StatsChecker checker = new StatsChecker(maxThreshold, alerters);
 
         Float[] numbers = {11.5f, 6.9f, 7.5f, 6.6f};
-        List<float> numberList = Arrays.asList(numbers);
+        List<Float> numberList = Arrays.asList(numbers);
         checker.checkAndAlert(numbers);
         
         assertTrue(emailAlerter.emailSent);
